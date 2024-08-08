@@ -1,12 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import useFetchData from "../hooks/useFetchData";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosInstance";
 
-const EditEvent = () => {
-  const { id } = useParams();
+const AddEvent = () => {
   const navigate = useNavigate();
-  const { data: event, error, loading } = useFetchData(`/events/${id}`);
   const [formData, setFormData] = useState({
     eventName: "",
     venueId: "",
@@ -14,63 +11,48 @@ const EditEvent = () => {
     image: "",
   });
 
-  // Populate formData when event data is fetched
-  useEffect(() => {
-    if (event) {
-      setFormData({
-        eventName: event.eventName || "",
-        venueId: event.venueId || "",
-        date: event.date || "",
-        imageUrl: event.image || "",
-
-
-      });
-    }
-  }, [event]);
-
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Validate the form before submission
   const validateForm = () => {
-    const { venueId, date, imageUrl } = formData;
+    const { venueId, date } = formData;
     const venueIdValid = venueId >= 1 && venueId <= 10;
     const dateValid = /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(date);
-    const imageUrlValid = imageUrl.trim() !== ""; // Check that imageUrl is not empty
-    return venueIdValid && dateValid && imageUrlValid;
+    return venueIdValid && dateValid;
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
-      alert("Invalid input. Please check venueId, date format, and image URL.");
+      alert("Invalid input. Please check venueId and date format.");
       return;
     }
 
+    const eventData = {
+      eventName: formData.eventName,
+      venueId: parseInt(formData.venueId, 10),
+      date: formData.date,
+      image: formData.image, // Ensure this matches the backend field
+    };
+
     try {
-      await axiosInstance.put(`/event/${id}`, formData, {
+      await axiosInstance.post("/events", eventData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      alert("Event updated successfully!");
+      alert("Event added successfully!");
       navigate("/");
     } catch (error) {
-      alert("Error updating event: " + error.message);
+      alert("Error adding event: " + error.message);
     }
   };
 
-  if (loading) return <p>Loading event...</p>;
-  if (error) return <p>Error loading event: {error.message}</p>;
-
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Edit Event</h2>
-      
+      <h2>Add Event</h2>
       <label>
         Event Name:
         <input
@@ -78,10 +60,10 @@ const EditEvent = () => {
           name="eventName"
           value={formData.eventName}
           onChange={handleInputChange}
+          required
         />
       </label>
       <br />
-      
       <label>
         Venue ID (1-10):
         <input
@@ -89,10 +71,10 @@ const EditEvent = () => {
           name="venueId"
           value={formData.venueId}
           onChange={handleInputChange}
+          required
         />
       </label>
       <br />
-      
       <label>
         Date (MM/DD/YYYY):
         <input
@@ -100,22 +82,22 @@ const EditEvent = () => {
           name="date"
           value={formData.date}
           onChange={handleInputChange}
+          required
         />
       </label>
       <br />
-      
       <label>
         Image URL:
         <input
           type="text"
           name="imageUrl"
-          value={formData.image}
+          value={formData.imageUrl}
           onChange={handleInputChange}
+          required
         />
       </label>
       <br />
-      
-      <button type="submit">Save</button>
+      <button type="submit">Add Event</button>
       <button type="button" onClick={() => navigate("/")}>
         Cancel
       </button>
@@ -123,4 +105,4 @@ const EditEvent = () => {
   );
 };
 
-export default EditEvent;
+export default AddEvent;
