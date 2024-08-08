@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link for navigation
 import DeleteEvent from "../components/DeleteEvent";
 import useFetchData from "../hooks/useFetchData";
 
@@ -11,6 +12,9 @@ const LandingPage = () => {
   return (
     <div>
       <h1>Events</h1>
+      <Link to="/add">
+        <button>Add Event</button>
+      </Link>
       {events && events.length > 0 ? (
         <ul>
           {events.map((event) => (
@@ -18,8 +22,11 @@ const LandingPage = () => {
               <h2>{event.eventName}</h2>
               <p>{event.venueId}</p>
               <p>Date: {event.date}</p>
-              <img src={event.image} alt={event.eventName} />
-              <DeleteEvent id={event.eventId} />
+              <img src={event.imageUrl} alt={event.eventName} />
+              <Link to={`/edit/${event.eventId}`}>
+                <button>Edit</button>
+              </Link>
+              <DeleteEvent id={event.id} />
             </li>
           ))}
         </ul>

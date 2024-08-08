@@ -6,46 +6,65 @@ import axiosInstance from "../api/axiosInstance";
 const EditEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+<<<<<<< HEAD
   const { data: event, error, loading } = useFetchData(`/events/${id}`);
+  
+=======
+  const { data: event, error, loading } = useFetchData(`/event/${id}`);
+>>>>>>> c327d4a13407ffe2b7319f37584a7b341427cf46
   const [formData, setFormData] = useState({
     eventName: "",
     venueId: "",
     date: "",
-    imageUrl: "",
+    image: "",
   });
 
+  // Populate formData when event data is fetched
   useEffect(() => {
     if (event) {
       setFormData({
         eventName: event.eventName || "",
         venueId: event.venueId || "",
         date: event.date || "",
-        imageUrl: event.imageUrl || "",
+<<<<<<< HEAD
+        imageUrl: event.image || "", // Ensure image is correctly mapped
+=======
+        imageUrl: event.image || "",
+>>>>>>> c327d4a13407ffe2b7319f37584a7b341427cf46
       });
     }
   }, [event]);
 
+  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // Validate the form before submission
   const validateForm = () => {
-    const { venueId, date } = formData;
+    const { venueId, date, imageUrl } = formData;
     const venueIdValid = venueId >= 1 && venueId <= 10;
     const dateValid = /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(date);
-    return venueIdValid && dateValid;
+    const imageUrlValid = imageUrl.trim() !== ""; // Check that imageUrl is not empty
+    return venueIdValid && dateValid && imageUrlValid;
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) {
-      alert("Invalid input. Please check venueId and date format.");
+      alert("Invalid input. Please check venueId, date format, and image URL.");
       return;
     }
 
     try {
+<<<<<<< HEAD
+      // Update the event using PUT request
       await axiosInstance.put(`/events/${id}`, formData, {
+=======
+      await axiosInstance.put(`/event/${id}`, formData, {
+>>>>>>> c327d4a13407ffe2b7319f37584a7b341427cf46
         headers: {
           "Content-Type": "application/json",
         },
@@ -63,6 +82,7 @@ const EditEvent = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Edit Event</h2>
+      
       <label>
         Event Name:
         <input
@@ -73,6 +93,7 @@ const EditEvent = () => {
         />
       </label>
       <br />
+      
       <label>
         Venue ID (1-10):
         <input
@@ -83,6 +104,7 @@ const EditEvent = () => {
         />
       </label>
       <br />
+      
       <label>
         Date (MM/DD/YYYY):
         <input
@@ -93,16 +115,18 @@ const EditEvent = () => {
         />
       </label>
       <br />
+      
       <label>
         Image URL:
         <input
           type="text"
           name="imageUrl"
-          value={formData.imageUrl}
+          value={formData.image}
           onChange={handleInputChange}
         />
       </label>
       <br />
+      
       <button type="submit">Save</button>
       <button type="button" onClick={() => navigate("/")}>
         Cancel
