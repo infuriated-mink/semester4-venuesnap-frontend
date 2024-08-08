@@ -22,7 +22,7 @@ const LandingPage = () => {
               <h2>{event.eventName}</h2>
               <p>{event.venueId}</p>
               <p>Date: {event.date}</p>
-              <img src={event.imageUrl} alt={event.eventName} />
+              <img src={event.image} alt={event.eventName} />
               <Link to={`/edit/${event.eventId}`}>
                 <button>Edit</button>
               </Link>
