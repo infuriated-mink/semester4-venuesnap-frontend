@@ -6,12 +6,7 @@ import axiosInstance from "../api/axiosInstance";
 const EditEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-<<<<<<< HEAD
   const { data: event, error, loading } = useFetchData(`/events/${id}`);
-  
-=======
-  const { data: event, error, loading } = useFetchData(`/event/${id}`);
->>>>>>> c327d4a13407ffe2b7319f37584a7b341427cf46
   const [formData, setFormData] = useState({
     eventName: "",
     venueId: "",
@@ -26,11 +21,9 @@ const EditEvent = () => {
         eventName: event.eventName || "",
         venueId: event.venueId || "",
         date: event.date || "",
-<<<<<<< HEAD
-        imageUrl: event.image || "", // Ensure image is correctly mapped
-=======
         imageUrl: event.image || "",
->>>>>>> c327d4a13407ffe2b7319f37584a7b341427cf46
+
+
       });
     }
   }, [event]);
@@ -59,12 +52,7 @@ const EditEvent = () => {
     }
 
     try {
-<<<<<<< HEAD
-      // Update the event using PUT request
-      await axiosInstance.put(`/events/${id}`, formData, {
-=======
       await axiosInstance.put(`/event/${id}`, formData, {
->>>>>>> c327d4a13407ffe2b7319f37584a7b341427cf46
         headers: {
           "Content-Type": "application/json",
         },
