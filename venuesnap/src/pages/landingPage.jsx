@@ -1,5 +1,6 @@
 import React from "react";
-import useFetchData from "../hooks/useFetchData"; 
+import DeleteEvent from "../components/DeleteEvent";
+import useFetchData from "../hooks/useFetchData";
 
 const LandingPage = () => {
   const { data: events, error, loading } = useFetchData("/events");
@@ -18,6 +19,7 @@ const LandingPage = () => {
               <p>{event.venueId}</p>
               <p>Date: {event.date}</p>
               <img src={event.image} alt={event.eventName} />
+              <DeleteEvent id={event.eventId} />
             </li>
           ))}
         </ul>
