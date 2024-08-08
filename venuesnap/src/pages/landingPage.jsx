@@ -14,9 +14,10 @@ const LandingPage = () => {
         <ul>
           {events.map((event) => (
             <li key={event.id}>
-              <h2>{event.name}</h2>
+              <h2>{event.eventName}</h2>
               <p>{event.venueId}</p>
               <p>Date: {event.date}</p>
+              <img src={event.image} alt={event.eventName} />
             </li>
           ))}
         </ul>
