@@ -6,12 +6,12 @@ import axiosInstance from "../api/axiosInstance";
 const EditEvent = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data: event, error, loading } = useFetchData(`/events/${id}`);
+  const { data: event, error, loading } = useFetchData(`/event/${id}`);
   const [formData, setFormData] = useState({
     eventName: "",
     venueId: "",
     date: "",
-    imageUrl: "",
+    image: "",
   });
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const EditEvent = () => {
         eventName: event.eventName || "",
         venueId: event.venueId || "",
         date: event.date || "",
-        imageUrl: event.imageUrl || "",
+        imageUrl: event.image || "",
       });
     }
   }, [event]);
@@ -45,7 +45,7 @@ const EditEvent = () => {
     }
 
     try {
-      await axiosInstance.put(`/events/${id}`, formData, {
+      await axiosInstance.put(`/event/${id}`, formData, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -98,7 +98,7 @@ const EditEvent = () => {
         <input
           type="text"
           name="imageUrl"
-          value={formData.imageUrl}
+          value={formData.image}
           onChange={handleInputChange}
         />
       </label>
