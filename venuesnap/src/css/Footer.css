@@ -1,0 +1,12 @@
+.footer {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #e6b9a6;
+}
+
+.footerText {
+  color: white;
+  font-size: 12pt;
+  font-family: josefin sans, sans-serif;
+}

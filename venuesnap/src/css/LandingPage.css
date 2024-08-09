@@ -1,0 +1,111 @@
+.SearchBar {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  height: 50px;
+  background-color: #e6b9a6;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 80%;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f9f9;
+  margin-left: 75px;
+}
+
+h1 {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  font-size: 28pt;
+  font-family: "istok web", sans-serif;
+  color: black;
+  margin-left: 75px;
+}
+
+.addButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 215px;
+  height: 175px;
+  padding: 0 1rem;
+  border: none;
+  border-radius: 12px;
+  font-size: 100pt;
+  font-weight: regular;
+  font-family: "Times New Roman", sans-serif;
+  color: black;
+  background-color: #d9d9d9;
+  margin-left: 75px;
+  text-decoration: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.pictureContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 215px;
+  height: 175px;
+  padding: 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 100pt;
+  font-weight: regular;
+  font-family: "Times New Roman", sans-serif;
+  color: black;
+  background-color: #d9d9d9;
+  margin-left: 75px;
+  text-decoration: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.pictureBox {
+  width: 215px;
+  height: 175px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+.textDiv {
+  margin-top: 90px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 10pt;
+  font-family: "istok web", sans-serif;
+  color: white;
+}
+
+p {
+  margin: 0 0 5px 0;
+}
+
+.picFlex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.editDelete {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none;
+  color: black;
+  margin: 5px 10px 0 10px;
+}

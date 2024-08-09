@@ -3,6 +3,10 @@ import { Link } from "react-router-dom"; // Import Link for navigation
 import DeleteEvent from "../components/DeleteEvent";
 import useFetchData from "../hooks/useFetchData";
 import { useState } from "react";
+import Header from "../components/Header";
+import "../css/LandingPage.css";
+import addButton from "../media/add.png";
+import Footer from "../components/Footer";
 
 const LandingPage = () => {
   const { data: events, error, loading } = useFetchData("/events");
@@ -17,59 +21,63 @@ const LandingPage = () => {
   );
 
   return (
-    // <div>
-    //   <h1>Events</h1>
-    //   <Link to="/add">
-    //     <button>Add Event</button>
-    //   </Link>
-    //   {events && events.length > 0 ? (
-    //     <ul>
-    //       {filteredEvents.map((event) => (
-    //         <li key={event.id}>
-    //           <h2>{event.eventName}</h2>
-    //           <p>{event.venueId}</p>
-    //           <p>Date: {event.date}</p>
-    //           <img src={event.image} alt={event.eventName} />
-    //           <Link to={`/edit/${event.eventId}`}>
-    //             <button>Edit</button>
-    //           </Link>
-    //           <DeleteEvent id={event.id} />
-    //         </li>
-    //       ))}
-    //     </ul>
-    //   ) : (
-    //     <p>No events found.</p>
-    //   )}
-    // </div>
     <div>
+      <Header />
+      <div className="SearchBar">
+        <input
+          type="text"
+          placeholder="Search events"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
       <h1>Events</h1>
-      <Link to="/add">
-        <button>Add Event</button>
-      </Link>
-      <input
-        type="text"
-        placeholder="Search events"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-      {filteredEvents && filteredEvents.length > 0 ? (
-        <ul>
-          {filteredEvents.map((event) => (
-            <li key={event.id}>
-              <h2>{event.eventName}</h2>
-              <p>{event.venueId}</p>
-              <p>Date: {event.date}</p>
-              <img src={event.image} alt={event.eventName} />
-              <Link to={`/edit/${event.eventId}`}>
-                <button>Edit</button>
-              </Link>
-              <DeleteEvent id={event.id} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No events found.</p>
-      )}
+      <div className="picFlex">
+        <Link to="/add">
+          <button className="addButton">
+            <img src={addButton} alt="add button" />
+          </button>
+        </Link>
+        {filteredEvents && filteredEvents.length > 0 ? (
+          <ul>
+            {filteredEvents.map((event) => (
+              <div key={event.id}>
+                <div className="pictureContainer">
+                  <div
+                    style={{
+                      background: `linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.5)), url(${event.image})`,
+                      fontSize: "12px",
+                      color: "white",
+                      height: "175px",
+                      width: "215px",
+                      backgroundSize: "100%",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                    }}
+                  >
+                    <div className="editDelete">
+                      <Link to={`/edit/${event.eventId}`}>
+                        <button style={{ borderRadius: "6px", border: "none" }}>
+                          <i className="fas fa-pencil-alt"></i>
+                        </button>
+                      </Link>
+                      <DeleteEvent id={event.id} />
+                    </div>
+                    <div className="textDiv">
+                      <p>{event.eventName}</p>
+                      <p>{event.venueId}</p>
+                      <p>Date: {event.date}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </ul>
+        ) : (
+          <p>No events found.</p>
+        )}
+      </div>
+      <Footer />
     </div>
   );
 };

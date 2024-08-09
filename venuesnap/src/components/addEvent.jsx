@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axiosInstance";
+import Header from "./Header";
+import Footer from "./Footer";
+import "../css/Add.css";
 
 const AddEvent = () => {
   const navigate = useNavigate();
@@ -52,55 +55,63 @@ const AddEvent = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <Header />
+      <div className="pinkLine"></div>
       <h2>Add Event</h2>
-      <label>
-        Event Name:
-        <input
-          type="text"
-          name="eventName"
-          value={formData.eventName}
-          onChange={handleInputChange}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Venue ID (1-10):
-        <input
-          type="number"
-          name="venueId"
-          value={formData.venueId}
-          onChange={handleInputChange}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Date (MM/DD/YYYY):
-        <input
-          type="text"
-          name="date"
-          value={formData.date}
-          onChange={handleInputChange}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Image URL:
-        <input
-          type="text"
-          name="imageUrl"
-          value={formData.imageUrl}
-          onChange={handleInputChange}
-          required
-        />
-      </label>
-      <br />
-      <button type="submit">Add Event</button>
-      <button type="button" onClick={() => navigate("/")}>
-        Cancel
-      </button>
+      <div className="addMain">
+        <div className="labelDiv">
+          <label>
+            Event Name:
+            <input
+              type="text"
+              name="eventName"
+              value={formData.eventName}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+
+          <br />
+          <label>
+            Venue ID (1-10):
+            <input
+              type="number"
+              name="venueId"
+              value={formData.venueId}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Date (MM/DD/YYYY):
+            <input
+              type="text"
+              name="date"
+              value={formData.date}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+          <br />
+          <label>
+            Image URL:
+            <input
+              type="text"
+              name="image"
+              value={formData.image}
+              onChange={handleInputChange}
+              required
+            />
+          </label>
+        </div>
+        <br />
+        <button type="submit" className="button">
+          Submit
+        </button>
+      </div>
+
+      <Footer />
     </form>
   );
 };

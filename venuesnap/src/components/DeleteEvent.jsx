@@ -15,7 +15,14 @@ const DeleteEvent = ({ id }) => {
     }
   };
 
-  return <button onClick={handleDelete}>Delete</button>;
+  return (
+    <button
+      onClick={handleDelete}
+      style={{ borderRadius: "4px", border: "none" }}
+    >
+      <i className="fas fa-trash-alt"></i>
+    </button>
+  );
 };
 
 export default DeleteEvent;
