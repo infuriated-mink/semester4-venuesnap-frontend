@@ -32,14 +32,14 @@ const LandingPage = () => {
         />
       </div>
       <h1>Events</h1>
-      <div className="picFlex">
-        <Link to="/add">
-          <button className="addButton">
-            <img src={addButton} alt="add button" />
-          </button>
-        </Link>
+      <div>
         {filteredEvents && filteredEvents.length > 0 ? (
-          <ul>
+          <ul className="picFlex">
+            <Link to="/add">
+              <button className="addButton">
+                <img src={addButton} alt="add button" />
+              </button>
+            </Link>
             {filteredEvents.map((event) => (
               <div key={event.id}>
                 <div className="pictureContainer">

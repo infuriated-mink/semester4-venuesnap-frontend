@@ -63,6 +63,7 @@ const AddEvent = () => {
           <label>
             Event Name:
             <input
+              class="addInput"
               type="text"
               name="eventName"
               value={formData.eventName}
@@ -75,6 +76,7 @@ const AddEvent = () => {
           <label>
             Venue ID (1-10):
             <input
+              class="addInput"
               type="number"
               name="venueId"
               value={formData.venueId}
@@ -86,6 +88,7 @@ const AddEvent = () => {
           <label>
             Date (MM/DD/YYYY):
             <input
+              class="addInput"
               type="text"
               name="date"
               value={formData.date}
@@ -97,6 +100,7 @@ const AddEvent = () => {
           <label>
             Image URL:
             <input
+              class="addInput"
               type="text"
               name="image"
               value={formData.image}

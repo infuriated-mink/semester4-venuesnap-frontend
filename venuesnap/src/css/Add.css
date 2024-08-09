@@ -25,7 +25,7 @@ h2 {
   margin-left: 75px;
 }
 
-input {
+input.addInput {
   margin: 10px 0 0 0;
   height: 30px;
   width: 150px;
