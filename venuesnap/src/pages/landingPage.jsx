@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom"; // Import Link for navigation
 import DeleteEvent from "../components/DeleteEvent";
 import useFetchData from "../hooks/useFetchData";
+import { useState } from "react";
 
 const LandingPage = () => {
   const { data: events, error, loading } = useFetchData("/events");
@@ -16,12 +17,42 @@ const LandingPage = () => {
   );
 
   return (
+    // <div>
+    //   <h1>Events</h1>
+    //   <Link to="/add">
+    //     <button>Add Event</button>
+    //   </Link>
+    //   {events && events.length > 0 ? (
+    //     <ul>
+    //       {filteredEvents.map((event) => (
+    //         <li key={event.id}>
+    //           <h2>{event.eventName}</h2>
+    //           <p>{event.venueId}</p>
+    //           <p>Date: {event.date}</p>
+    //           <img src={event.image} alt={event.eventName} />
+    //           <Link to={`/edit/${event.eventId}`}>
+    //             <button>Edit</button>
+    //           </Link>
+    //           <DeleteEvent id={event.id} />
+    //         </li>
+    //       ))}
+    //     </ul>
+    //   ) : (
+    //     <p>No events found.</p>
+    //   )}
+    // </div>
     <div>
       <h1>Events</h1>
       <Link to="/add">
         <button>Add Event</button>
       </Link>
-      {events && events.length > 0 ? (
+      <input
+        type="text"
+        placeholder="Search events"
+        value={searchQuery}
+        onChange={(e) => setSearchQuery(e.target.value)}
+      />
+      {filteredEvents && filteredEvents.length > 0 ? (
         <ul>
           {filteredEvents.map((event) => (
             <li key={event.id}>
