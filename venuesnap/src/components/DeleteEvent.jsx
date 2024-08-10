@@ -5,10 +5,10 @@ const refreshPage = () => {
   window.location.reload();
 };
 
-const DeleteEvent = ({ id }) => {
+const DeleteEvent = ({ eventId }) => {
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/events/${id}`);
+      await axiosInstance.delete(`/events/${eventId}`);
       refreshPage();
     } catch (err) {
       console.error(err);

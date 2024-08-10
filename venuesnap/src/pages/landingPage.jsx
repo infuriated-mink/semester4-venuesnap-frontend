@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { Link } from "react-router-dom"; 
 import DeleteEvent from "../components/DeleteEvent";
 import useFetchData from "../hooks/useFetchData";
 import { useState } from "react";
@@ -61,7 +61,7 @@ const LandingPage = () => {
                           <i className="fas fa-pencil-alt"></i>
                         </button>
                       </Link>
-                      <DeleteEvent id={event.id} />
+                      <DeleteEvent id={event.eventId} />
                     </div>
                     <div className="textDiv">
                       <p>{event.eventName}</p>

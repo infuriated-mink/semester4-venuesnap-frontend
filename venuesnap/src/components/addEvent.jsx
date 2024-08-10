@@ -37,7 +37,7 @@ const AddEvent = () => {
       eventName: formData.eventName,
       venueId: parseInt(formData.venueId, 10),
       date: formData.date,
-      image: formData.image, // Ensure this matches the backend field
+      image: formData.image, 
     };
 
     try {
