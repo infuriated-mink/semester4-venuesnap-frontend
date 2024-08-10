@@ -61,7 +61,7 @@ const LandingPage = () => {
                           <i className="fas fa-pencil-alt"></i>
                         </button>
                       </Link>
-                      <DeleteEvent id={event.eventId} />
+                      <DeleteEvent id={event.id} />
                     </div>
                     <div className="textDiv">
                       <p>{event.eventName}</p>
