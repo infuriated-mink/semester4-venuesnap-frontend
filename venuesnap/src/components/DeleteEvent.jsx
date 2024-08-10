@@ -8,7 +8,7 @@ const refreshPage = () => {
 const DeleteEvent = ({ id }) => {
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/event/${id}`);
+      await axiosInstance.delete(`/events/${id}`);
       refreshPage();
     } catch (err) {
       console.error(err);
