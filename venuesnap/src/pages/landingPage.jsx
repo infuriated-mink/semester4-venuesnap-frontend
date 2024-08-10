@@ -55,13 +55,13 @@ const LandingPage = () => {
                       backgroundRepeat: "no-repeat",
                     }}
                   >
-                    <div className="editDelete">
+                    <div className="editDelete" key={event.eventId}>
                       <Link to={`/edit/${event.eventId}`}>
                         <button style={{ borderRadius: "6px", border: "none" }}>
                           <i className="fas fa-pencil-alt"></i>
                         </button>
                       </Link>
-                      <DeleteEvent id={event.eventId} />
+                      <DeleteEvent eventId={event.eventId} />
                     </div>
                     <div className="textDiv">
                       <p>{event.eventName}</p>
